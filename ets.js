@@ -23,7 +23,7 @@ async function loadYTAPI() {
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
-            irstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     });
 }
 var onYouTubeIframeAPIReady = function () {
