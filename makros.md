@@ -16,7 +16,7 @@ window.setTimeout(function() {emanager.runProgram(build_program)},1);
 <script>
 build_program.push(new WaitProgramLine(@0));
 </script>
-@ets.end
+@end
 
 @ets.newYTPlayer
 <script>
