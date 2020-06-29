@@ -17,7 +17,7 @@ Nur ein Test von Entertaiment Manager
 
 <div id="player1"></div>
 
-<!-- id="etsCode" -->
+<!-- id="etsCode" style="display:none" -->
 @ets.reset()  
 @ets.newYTPlayer(player1,640,360,YOneAeBz8BQ)  
 @ets.seekYTV(player1,50)  
@@ -43,6 +43,4 @@ Nur ein Test von Entertaiment Manager
 @ets.say(Genug! Aufwiedersehen!,Deutsch Male)  
 @ets.run()
 
-
-</textarea>
-Run `eval(document.getElementById('etsCode').innerHTML)` in js console.
+<input type="button" value="START" onclick="eval(document.getElementById('etsCode').innerHTML)">
