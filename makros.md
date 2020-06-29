@@ -42,6 +42,10 @@ build_program.push(new LoadVideoProgramLine("@0","@1"));
 build_program.push(new TextToSpeachProgramLine("@0","@1",false));
 @end
 
+@ets.sayAwait
+build_program.push(new TextToSpeachProgramLine("@0","@1",true));
+@end
+
 -->
 # Makros
 *** ACHTUNG! ***
@@ -93,4 +97,10 @@ Das div mit der Id playerId zum Video Player machen:
 
 ## Text zu sprache
 
+Ohne Warten auf Beendung:
+
 `ets.say(text, language)`
+
+Mit Warten auf Beendung:
+
+`ets.sayAwait(text, language)`

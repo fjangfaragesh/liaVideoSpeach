@@ -64,9 +64,9 @@ class EntertainmentManager {
         }
     }
         
-    say(text,lang) {
+    say(text,lang) {        
         return new Promise(function(resolve, reject) {
-            responsiveVoice.speak(text,lang);
+            responsiveVoice.speak(text,lang,{onend: resolve});
         });
         
     }
@@ -195,9 +195,9 @@ class TextToSpeachProgramLine extends EntertaimentProgramLine {
     }
     execute(entertaimentManager) {
         if (this.awaitEnable) {
-            return entertaimentManager.say(this.text,this.lang,this.awaitEnable);
+            return entertaimentManager.say(this.text,this.lang);
         } else {
-            entertaimentManager.say(this.text,this.lang,this.awaitEnable);
+            entertaimentManager.say(this.text,this.lang);
             return;
         }
     }
