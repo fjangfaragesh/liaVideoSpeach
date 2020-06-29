@@ -2,12 +2,14 @@
 
 @ets.reset
 <script>
+console.log("ets.reset");
 build_program = [];
 </script>
 @end
 
 @ets.run
 <script>
+console.log("ets.run");
 window.setTimeout(function() {emanager.runProgram(build_program)},1);
 </script>
 @end
