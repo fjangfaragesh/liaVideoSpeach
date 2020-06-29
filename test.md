@@ -17,6 +17,7 @@ Nur ein Test von Entertaiment Manager
 
 <div id="player1"></div>
 <script>
+console.log("hallo????");
 @ets.reset()
 @ets.newYTPlayer(player1,640,360,YOneAeBz8BQ)
 @ets.seekYTV(player1,50)
