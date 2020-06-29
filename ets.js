@@ -1,5 +1,6 @@
 "use strict";
 var emanager;
+var build_program = [];// für die Makros
 var apiLoaded = false;
 async function init() {
     await loadYTAPI();
