@@ -34,8 +34,8 @@ Nur ein Test von Entertaiment Manager
 @ets.waitYTVTime(player1,60)
 @ets.pauseYTV(player1)
 @ets.say(Genug von diesem Video. Als nächstes schauen wir ein anderes,Deutsch Male)
-@ets.pauseYTV(player1)
 @ets.changeYTV(player1,PD2XgQOyCCk)
+@ets.pauseYTV(player1)
 @ets.wait(8000)
 @ets.seekYTV(player1,8)
 @ets.say(Wunderschön. Schaut hin. Schaut nicht weg! Bleibt konzentriert. Echt schönes Video! Wirklich gut!,Deutsch Male)
@@ -45,7 +45,7 @@ Nur ein Test von Entertaiment Manager
 @ets.say(So viele Details. Bitte weiter schauen!,Deutsch Male)
 @ets.waitYTVTime(player1,60)
 @ets.pauseYTV(player1)
-@ets.say(Genug für heute! Danke für Ihre Aufmersamkeit. Aufwiedersehen!,Deutsch Male)
+@ets.say(Genug für heute! Danke für Ihre Aufmerskamkeit. Aufwiedersehen!,Deutsch Male)
 @ets.run()
 
 <input type="button" value="START" onclick="eval(document.getElementById('etsCode').innerHTML)">
