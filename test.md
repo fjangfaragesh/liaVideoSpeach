@@ -37,6 +37,6 @@ Nur ein Test von Entertaiment Manager
 @ets.seekYTV(8)
 @ets.say(Wunderschön. Schaut hin. Schaut nicht weg! Bleibt konzentriert. Echt schönes Video! Wirklich gut!,Deutsch Male)
 @ets.waitYTVTime(player1,20)
-@ets.pause(player1)
+@ets.playYTV(player1)
 @ets.say(Genug! Aufwiedersehen!,Deutsch Male)
 @ets.run()

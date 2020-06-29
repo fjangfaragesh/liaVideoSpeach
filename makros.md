@@ -56,7 +56,7 @@ build_program.push(new LoadVideoProgramLine("@0","@1"));
 
 @ets.say
 <script>
-build_program.push(new TextToSpeachProgramLine(`@0`,"@1",false));
+build_program.push(new TextToSpeachProgramLine("@0","@1",false));
 </script>
 @end
 
