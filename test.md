@@ -16,7 +16,8 @@ Nur ein Test von Entertaiment Manager
 ## YouTube Test
 
 <div id="player1"></div>
-<textarea id="etsCode" readonly>
+
+<!-- id="etsCode" -->
 @ets.reset()  
 @ets.newYTPlayer(player1,640,360,YOneAeBz8BQ)  
 @ets.seekYTV(player1,50)  
@@ -40,6 +41,8 @@ Nur ein Test von Entertaiment Manager
 @ets.waitYTVTime(player1,20)  
 @ets.pauseYTV(player1)  
 @ets.say(Genug! Aufwiedersehen!,Deutsch Male)  
-@ets.run()  
+@ets.run()
+
+
 </textarea>
-Run `eval(document.getElementById('etsCode').value)` in js console.
+Run `eval(document.getElementById('etsCode').innerHTML)` in js console.
