@@ -16,8 +16,6 @@ Nur ein Test von Entertaiment Manager
 ## YouTube Test
 
 <div id="player1"></div>
-<script>
-console.log("hallo????");
 @ets.reset()
 @ets.newYTPlayer(player1,640,360,YOneAeBz8BQ)
 @ets.seekYTV(player1,50)
@@ -42,4 +40,3 @@ console.log("hallo????");
 @ets.playYTV(player1)
 @ets.say(Genug! Aufwiedersehen!,Deutsch Male)
 @ets.run()
-</script>
