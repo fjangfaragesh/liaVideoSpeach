@@ -1,65 +1,45 @@
 <!--
 
 @ets.reset
-<script>
 console.log("ets.reset");
 build_program = [];
-</script>
 @end
 
 @ets.run
-<script>
 console.log("ets.run");
 window.setTimeout(function() {emanager.runProgram(build_program)},1);
-</script>
 @end
 
 @ets.wait
-<script>
 build_program.push(new WaitProgramLine(@0));
-</script>
 @end
 
 @ets.newYTPlayer
-<script>
 build_program.push(new NewPlayerProgramLine( "@0" , @1, @2, "@3"));
-</script>
 @end
 
 @ets.waitYTVTime
-<script>
 build_program.push(new WaitForPositionProgramLine("@0", @1));
-</script>
 @end
 
 @ets.seekYTV
-<script>
 build_program.push(new SeekProgramLine("@0", @1));
-</script>
 @end
 
 @ets.playYTV
-<script>
 build_program.push(new PlayProgramLine("@0"));
-</script>
 @end
 
 @ets.pauseYTV
-<script>
 build_program.push(new PauseProgramLine("@0"));
-</script>
 @end
 
 @ets.changeYTV
-<script>
 build_program.push(new LoadVideoProgramLine("@0","@1"));
-</script>
 @end
 
 @ets.say
-<script>
 build_program.push(new TextToSpeachProgramLine("@0","@1",false));
-</script>
 @end
 
 -->

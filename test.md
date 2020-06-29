@@ -16,6 +16,7 @@ Nur ein Test von Entertaiment Manager
 ## YouTube Test
 
 <div id="player1"></div>
+<script>
 @ets.reset()
 @ets.newYTPlayer(player1,640,360,YOneAeBz8BQ)
 @ets.seekYTV(player1,50)
@@ -40,3 +41,4 @@ Nur ein Test von Entertaiment Manager
 @ets.playYTV(player1)
 @ets.say(Genug! Aufwiedersehen!,Deutsch Male)
 @ets.run()
+</script>
