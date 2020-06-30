@@ -159,6 +159,7 @@ class WaitForPositionProgramLine extends PlayerActionProgramLine {
         let current = this;
         return new Promise(async function(resolve, reject) {
             while (p.getCurrentTime() <= current.time) {
+                console.log(p.getCurrentTime() + " " + current.time);
                 await sleep(100);
             }
             resolve();
@@ -192,6 +193,7 @@ class PlayProgramLine extends PlayerActionProgramLine {
         // p.addEventListener(...) ???
         let pr = new Promise(async function(resolve, reject) {
             while (p.getPlayerState() != YT.PlayerState.PLAYING) {
+                console.log("state:" + p.getPlayerState());
                 await sleep(100);
             }
             resolve();
