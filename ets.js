@@ -66,6 +66,7 @@ class EntertainmentManager {
         if (this.programRunning) throw new Error("EntertainmentManager can't run 2 Programs at the same time!");
         this.programRunning = true;
         for (let l of lines) {
+            console.log("running " + l.toString());
             await l.execute(this);
         }
         this.programRunning = false;
@@ -89,6 +90,9 @@ class EntertaimentProgramLine {
     execute(entertaimentManager) {
         throw new Error("PlayerProgramLine.execute is abstract");
     }
+    toString() {
+        throw new Error("PlayerProgramLine.toString is abstract");
+    }
 }
 class WaitProgramLine extends EntertaimentProgramLine {
     constructor(milliSeconds) {
@@ -98,6 +102,9 @@ class WaitProgramLine extends EntertaimentProgramLine {
     execute(entertaimentManager) {
         return sleep(this.milliSeconds);
     }
+    toString() {
+        return "WaitProgramLine(" + this.milliSeconds + ")";
+    }
 }
 class LogProgramLine extends EntertaimentProgramLine {
     constructor(message) {
@@ -106,6 +113,9 @@ class LogProgramLine extends EntertaimentProgramLine {
     }
     execute(entertaimentManager) {
         console.log(this.message);
+    }
+    toString() {
+        return "LogProgramLine";
     }
 }
 class NewPlayerProgramLine extends EntertaimentProgramLine {
@@ -119,6 +129,9 @@ class NewPlayerProgramLine extends EntertaimentProgramLine {
     execute(entertaimentManager) {
         let current = this;
         return entertaimentManager.openNewPlayer(this.playerId,this.width, this.heigth, this.videoId);
+    }
+    toString() {
+        return "NewPlayerProgramLine(" this.playerId + ")";
     }
 }
     
@@ -148,6 +161,9 @@ class WaitForPositionProgramLine extends PlayerActionProgramLine {
             resolve();
         });
     }
+    toString() {
+        return "WaitForPositionProgramLine(" + this.playerId + "," + this.time + ")";
+    }
 }
     
     
@@ -159,6 +175,9 @@ class SeekProgramLine extends PlayerActionProgramLine {
     }
     action(p) {
         p.seekTo(this.time);
+    }
+    toString() {
+        return "SeekProgramLine(" + this.playerId + "," + this.time + ")";
     }
 }
 class PlayProgramLine extends PlayerActionProgramLine {
@@ -174,6 +193,9 @@ class PlayProgramLine extends PlayerActionProgramLine {
         });
         if (!p.getPlayerState() != YT.PlayerState.PLAYING) return pr;
     }
+    toString() {
+        return "PlayProgramLine(" + this.playerId + ")";
+    }
 }
 class PauseProgramLine extends PlayerActionProgramLine {
     constructor(playerId) {
@@ -181,6 +203,9 @@ class PauseProgramLine extends PlayerActionProgramLine {
     }
     action(p) {
         p.pauseVideo();
+    }
+    toString() {
+        return "PauseProgramLine(" + this.playerId + ")";
     }
 }
 class LoadVideoProgramLine extends PlayerActionProgramLine {
@@ -191,6 +216,9 @@ class LoadVideoProgramLine extends PlayerActionProgramLine {
     action(p) {
         p.loadVideoById(this.videoId);
     }
+    toString() {
+        return "LoadVideoProgramLine(" + this.playerId + "," + this.videoId + ")";
+    }
 }
 class MuteVideoProgramLine extends PlayerActionProgramLine {
     constructor(playerId) {
@@ -199,6 +227,9 @@ class MuteVideoProgramLine extends PlayerActionProgramLine {
     action(p) {
         p.mute();
     }
+    toString() {
+        return "MuteVideoProgramLine(" + this.playerId + ")";
+    }
 }
 class UnMuteVideoProgramLine extends PlayerActionProgramLine {
     constructor(playerId) {
@@ -206,6 +237,9 @@ class UnMuteVideoProgramLine extends PlayerActionProgramLine {
     }
     action(p) {
         p.unMute();
+    }
+    toString() {
+        return "UnMuteVideoProgramLine(" + this.playerId + ")";
     }
 }
 class SetVideoVolumneProgamLine extends PlayerActionProgramLine {
@@ -216,13 +250,10 @@ class SetVideoVolumneProgamLine extends PlayerActionProgramLine {
     action(p) {
         p.setVolume(this.volumne);
     }
+    toString() {
+        return "SetVideoVolumneProgamLine(" + this.playerId + "," + this.volumne + ")";
+    }
 }
-
-
-
-
-
-
 
 
 
@@ -241,6 +272,9 @@ class TextToSpeachProgramLine extends EntertaimentProgramLine {
             entertaimentManager.say(this.text,this.lang);
             return;
         }
+    }
+    toString() {
+        return "TextToSpeachProgramLine(" + this.text + "," + this.lang + "," + this.awaitEnable + ")";
     }
 }
     
