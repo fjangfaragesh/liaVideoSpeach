@@ -267,12 +267,12 @@ class TextToSpeachProgramLine extends EntertaimentProgramLine {
         this.awaitEnable = awaitEnable;
     }
     execute(entertaimentManager) {
-        if (this.awaitEnable) {
-            return entertaimentManager.say(this.text,this.lang);
-        } else {
+  //      if (this.awaitEnable) {
+  //          return entertaimentManager.say(this.text,this.lang);
+   //     } else {
             entertaimentManager.say(this.text,this.lang);
-            return;
-        }
+   //         return;
+   //     }
     }
     toString() {
         return "TextToSpeachProgramLine(" + this.text + "," + this.lang + "," + this.awaitEnable + ")";
