@@ -1,7 +1,6 @@
 "use strict";
 var emanager;
 var apiLoaded = false;
-var build_program = [];
 async function init() {
     await loadYTAPI();
 }

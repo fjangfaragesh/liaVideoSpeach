@@ -46,15 +46,15 @@ build_program.push(new TextToSpeachProgramLine("@0","@1",true));
 @end
 
 @ets.muteYTV
-bulid_program.push(new MuteVideoProgramLine("@0"));
+build_program.push(new MuteVideoProgramLine("@0"));
 @end
 
 @ets.unMuteYTV
-bulid_program.push(new UnMuteVideoProgramLine("@0"));
+build_program.push(new UnMuteVideoProgramLine("@0"));
 @end
 
 @ets.setVolumneYTV
-bulid_program.push(new SetVideoVolumneProgamLine("@0",@1));
+build_program.push(new SetVideoVolumneProgamLine("@0",@1));
 @end
 
 -->
