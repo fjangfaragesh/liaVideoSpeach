@@ -2,7 +2,7 @@
 
 @ets.reset
 console.log("ets.reset");
-build_program = [];
+var build_program = [];
 @end
 
 @ets.run
@@ -44,6 +44,18 @@ build_program.push(new TextToSpeachProgramLine("@0","@1",false));
 
 @ets.sayAwait
 build_program.push(new TextToSpeachProgramLine("@0","@1",true));
+@end
+
+@ets.muteYTV
+bulid_program.push(new MuteVideoProgramLine("@0"));
+@end
+
+@ets.unMuteYTV
+bulid_program.push(new UnMuteVideoProgramLine("@0"));
+@end
+
+@ets.setVolumneYTV
+bulid_program.push(new SetVideoVolumneProgamLine("@0",@1));
 @end
 
 -->
@@ -89,7 +101,23 @@ Das div mit der Id playerId zum Video Player machen:
 
 ## Video abspielen
 
+Video abspielen (und warten, bis das Abspielen gestartet hat. Falls das abspielen nicht automatisch funktioniert, wird gewartet, bis manuell auf Play gedrückt wurde)
+
 `ets.playYTV(playerId)`
+
+## Video Stumm Schalten
+
+`ets.muteYTV(playerId)`
+
+## Video Stummschaltung aufheben
+
+`ets.unMuteYTV(playerId)`
+
+## Video Lautstärke ändern
+
+Lautstärke: Ganzzahl zwischen 0 und 100
+
+`ets.setVolumneYTV(playerId,vol)`
 
 ## Video Ändern
 

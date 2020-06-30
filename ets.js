@@ -1,6 +1,5 @@
 "use strict";
 var emanager;
-var build_program = [];// für die Makros
 var apiLoaded = false;
 async function init() {
     await loadYTAPI();
@@ -27,17 +26,22 @@ async function loadYTAPI() {
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     });
 }
+
+
 var onYouTubeIframeAPIReady = function () {
     throw new Error("overwriting function for promise has not worked");
 };
+
+
 class EntertainmentManager {
     constructor() {
         this.players = {};
+        this.programRunning = false;
     }
     openNewPlayer(playerId,width,height,videoId) {
         let current = this;
         return new Promise(function (resolve, reject) {
-            current.players[playerId] = new YT.Player(playerId,{width,height,videoId,events:{'onReady':()=>resolve()}});//TODO state Change
+            current.players[playerId] = new YT.Player(playerId,{width,height,videoId,events:{'rel':0,'onReady':()=>resolve()}});//TODO state Change
         });
     }
     onPlayerReady(event) {
@@ -59,9 +63,12 @@ class EntertainmentManager {
         return this.players[playerId];
     }
     async runProgram(lines) {
+        if (this.programRunning) throw new Error("EntertainmentManager can't run 2 Programs at the same time!");
+        this.programRunning = true;
         for (let l of lines) {
             await l.execute(this);
         }
+        this.programRunning = false;
     }
         
     say(text,lang) {        
@@ -72,6 +79,9 @@ class EntertainmentManager {
     }
 }
 emanager = new EntertainmentManager();
+
+
+
 class EntertaimentProgramLine {
     constructor() {
         
@@ -111,28 +121,6 @@ class NewPlayerProgramLine extends EntertaimentProgramLine {
         return entertaimentManager.openNewPlayer(this.playerId,this.width, this.heigth, this.videoId);
     }
 }
-class WaitForPositionProgramLine extends EntertaimentProgramLine {
-    constructor(playerId, time) {
-        super();
-        this.playerId = playerId;
-        this.time = time;
-    }
-    execute(entertaimentManager) {
-        let current = this;
-        let p = entertaimentManager.getPlayer(this.playerId);
-        return new Promise(async function(resolve, reject) {
-            while (p.getCurrentTime() <= current.time) {
-//              console.log(p.getCurrentTime() + " " + current.time);
-                await sleep(100);
-            }
-            resolve();
-        });
-    }
-}
-    
-    
-    
-    
     
 class PlayerActionProgramLine extends EntertaimentProgramLine {
     constructor(playerId, action) {
@@ -140,13 +128,27 @@ class PlayerActionProgramLine extends EntertaimentProgramLine {
         this.playerId = playerId;
     }
     execute(entertaimentManager) {
-        if (this.action != undefined) this.action(entertaimentManager.getPlayer(this.playerId));
+        let p = entertaimentManager.getPlayer(this.playerId);
+        if (this.action != undefined && p != undefined) this.action(p);
     }
     action(p) {
         throw new Error("PlayerActionPlayerProgramLine.action() is abstract!");
     }
 }
-    
+
+class WaitForPositionProgramLine extends PlayerActionProgramLine {
+    constructor(playerId, time) {
+        super(playerId);
+        this.time = time;
+    }
+    action(p) {
+        let current = this;
+        return new Promise(async function(resolve, reject) {
+            while (p.getCurrentTime() <= current.time) await sleep(100);
+            resolve();
+        });
+    }
+}
     
     
     
@@ -165,6 +167,12 @@ class PlayProgramLine extends PlayerActionProgramLine {
     }
     action(p) {
         p.playVideo();
+        // p.addEventListener(...) ???
+        let pr = new Promise(async function(resolve, reject) {
+            while (p.getPlayerState() != YT.PlayerState.PLAYING) await sleep(100);
+            resolve();
+        });
+        if (!p.getPlayerState() != YT.PlayerState.PLAYING) return pr;
     }
 }
 class PauseProgramLine extends PlayerActionProgramLine {
@@ -184,7 +192,40 @@ class LoadVideoProgramLine extends PlayerActionProgramLine {
         p.loadVideoById(this.videoId);
     }
 }
-    
+class MuteVideoProgramLine extends PlayerActionProgramLine {
+    constructor(playerId) {
+        super(playerId);
+    }
+    action(p) {
+        p.mute();
+    }
+}
+class UnMuteVideoProgramLine extends PlayerActionProgramLine {
+    constructor(playerId) {
+        super(playerId);
+    }
+    action(p) {
+        p.unMute();
+    }
+}
+class SetVideoVolumneProgamLine extends PlayerActionProgramLine {
+    constructor(playerId,vol) {
+        super(playerId);
+        this.volumne = vol;
+    }
+    action(p) {
+        p.setVolume(this.volumne);
+    }
+}
+
+
+
+
+
+
+
+
+
     
 class TextToSpeachProgramLine extends EntertaimentProgramLine {
     constructor(text, lang, awaitEnable) {
