@@ -1,7 +1,7 @@
 <!--
 
-import: https://raw.githubusercontent.com/fjangfaragesh/liaVideoSpeach/master/makros.md
-script: https://raw.githubusercontent.com/fjangfaragesh/liaVideoSpeach/master/ets.js
+import: https://raw.githubusercontent.com/fjangfaragesh/liaVideoSpeach/dev/makros.md
+script: https://raw.githubusercontent.com/fjangfaragesh/liaVideoSpeach/dev/ets.js
 
 author:   Fabian Bär
 language: en
