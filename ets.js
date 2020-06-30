@@ -66,8 +66,9 @@ class EntertainmentManager {
         if (this.programRunning) throw new Error("EntertainmentManager can't run 2 Programs at the same time!");
         this.programRunning = true;
         for (let l of lines) {
-            console.log("running " + l.toString());
+            console.log("EntertainmentManager.runProgram: running " + l.toString());
             await l.execute(this);
+            console.log("EntertainmentManager.runProgram: commandline done!");
         }
         this.programRunning = false;
     }
