@@ -2,7 +2,6 @@
 
 @ets.reset
 console.log("ets.reset");
-var build_program = [];
 @end
 
 @ets.run
