@@ -158,7 +158,9 @@ class WaitForPositionProgramLine extends PlayerActionProgramLine {
     action(p) {
         let current = this;
         return new Promise(async function(resolve, reject) {
-            while (p.getCurrentTime() <= current.time) await sleep(100);
+            while (p.getCurrentTime() <= current.time) {
+                await sleep(100);
+            }
             resolve();
         });
     }
@@ -189,7 +191,9 @@ class PlayProgramLine extends PlayerActionProgramLine {
         p.playVideo();
         // p.addEventListener(...) ???
         let pr = new Promise(async function(resolve, reject) {
-            while (p.getPlayerState() != YT.PlayerState.PLAYING) await sleep(100);
+            while (p.getPlayerState() != YT.PlayerState.PLAYING) {
+                await sleep(100);
+            }
             resolve();
         });
         if (!p.getPlayerState() != YT.PlayerState.PLAYING) return pr;
@@ -267,12 +271,12 @@ class TextToSpeachProgramLine extends EntertaimentProgramLine {
         this.awaitEnable = awaitEnable;
     }
     execute(entertaimentManager) {
-  //      if (this.awaitEnable) {
-  //          return entertaimentManager.say(this.text,this.lang);
-   //     } else {
+        if (this.awaitEnable) {
+            return entertaimentManager.say(this.text,this.lang);
+        } else {
             entertaimentManager.say(this.text,this.lang);
-   //         return;
-   //     }
+            return;
+        }
     }
     toString() {
         return "TextToSpeachProgramLine(" + this.text + "," + this.lang + "," + this.awaitEnable + ")";
