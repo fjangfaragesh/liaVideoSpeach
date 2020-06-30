@@ -131,7 +131,7 @@ class NewPlayerProgramLine extends EntertaimentProgramLine {
         return entertaimentManager.openNewPlayer(this.playerId,this.width, this.heigth, this.videoId);
     }
     toString() {
-        return "NewPlayerProgramLine(" this.playerId + ")";
+        return "NewPlayerProgramLine(" + this.playerId + ")";
     }
 }
     
