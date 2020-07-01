@@ -50,15 +50,6 @@ class EntertainmentManager {
     onPlayerStateChange(event) {
         console.log("onPlayerStateChange",event);
     }
-    waitForPlayPosition(playerId,pos) {
-        let current = this;
-        return new Promise(async function(resolve, reject) {
-            while (Math.random() > 0.1) {
-                await sleep(250);
-            }
-            resolve();
-        });
-    }
     getPlayer(playerId) {
         return this.players[playerId];
     }
@@ -143,7 +134,7 @@ class PlayerActionProgramLine extends EntertaimentProgramLine {
     }
     execute(entertaimentManager) {
         let p = entertaimentManager.getPlayer(this.playerId);
-        if (this.action != undefined && p != undefined) this.action(p);
+        if (this.action != undefined && p != undefined) return this.action(p);
     }
     action(p) {
         throw new Error("PlayerActionPlayerProgramLine.action() is abstract!");
