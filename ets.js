@@ -38,17 +38,11 @@ class EntertainmentManager {
         this.players = {};
         this.programRunning = false;
     }
-    openNewPlayer(playerId,width,height,videoId) {
+    openNewPlayer(playerId,width,height) {
         let current = this;
         return new Promise(function (resolve, reject) {
-            current.players[playerId] = new YT.Player(playerId,{width,height,videoId,events:{'rel':0,'onReady':()=>resolve()}});//TODO state Change
+            current.players[playerId] = new YT.Player(playerId,{width,height,undefined,events:{'rel':0,'onReady':()=>resolve()}});//TODO state Change
         });
-    }
-    onPlayerReady(event) {
-        console.log("onplayerReady",event);
-    }
-    onPlayerStateChange(event) {
-        console.log("onPlayerStateChange",event);
     }
     getPlayer(playerId) {
         return this.players[playerId];
@@ -115,16 +109,15 @@ class LogProgramLine extends EntertaimentProgramLine {
     }
 }
 class NewPlayerProgramLine extends EntertaimentProgramLine {
-    constructor(playerId,width,heigth,videoId) {
+    constructor(playerId,width,heigth) {
         super();
         this.playerId = playerId;
         this.width = width;
         this.heigth = heigth;
-        this.videoId = videoId;
     }
     execute(entertaimentManager) {
         let current = this;
-        return entertaimentManager.openNewPlayer(this.playerId,this.width, this.heigth, this.videoId);
+        return entertaimentManager.openNewPlayer(this.playerId,this.width, this.heigth);
     }
     toString() {
         return "NewPlayerProgramLine(" + this.playerId + ")";
@@ -154,7 +147,7 @@ class WaitForPositionProgramLine extends PlayerActionProgramLine {
         let current = this;
         return new Promise(async function(resolve, reject) {
             while (p.getCurrentTime() <= current.time) {
-                console.log(p.getCurrentTime() + " " + current.time);
+//                console.log(p.getCurrentTime() + " " + current.time);
                 await sleep(100);
             }
             resolve();
@@ -188,7 +181,7 @@ class PlayProgramLine extends PlayerActionProgramLine {
         // p.addEventListener(...) ???
         let pr = new Promise(async function(resolve, reject) {
             while (p.getPlayerState() != YT.PlayerState.PLAYING) {
-                console.log("state:" + p.getPlayerState());
+//                console.log("state:" + p.getPlayerState());
                 await sleep(100);
             }
             resolve();
@@ -280,31 +273,5 @@ class TextToSpeachProgramLine extends EntertaimentProgramLine {
     }
 }
     
-    
-    
-    
-function exampleProgram() {
-    let ret = [];
-    ret.push(new NewPlayerProgramLine("player",640,360,'YOneAeBz8BQ'));
-    ret.push(new PlayProgramLine("player"));
-    ret.push(new SeekProgramLine("player",50.0));
-    ret.push(new WaitForPositionProgramLine("player",55.0));
-    ret.push(new PauseProgramLine("player"));
-    ret.push(new TextToSpeachProgramLine("8 sekunden pause und dann 3 Sekunden zurück spulen...","German Male",false));
-    ret.push(new WaitProgramLine(8000));
-    ret.push(new SeekProgramLine("player",52.0));
-    ret.push(new PlayProgramLine("player"));
-    ret.push(new WaitForPositionProgramLine("player",65.0));
-    ret.push(new LoadVideoProgramLine("player","PD2XgQOyCCk"));
-    ret.push(new PauseProgramLine("player"));
-    ret.push(new TextToSpeachProgramLine("Neues Video, 8 Sekunden warten...","German Male",false));
-    ret.push(new WaitProgramLine(8000));
-    ret.push(new SeekProgramLine("player",8.0));
-    ret.push(new PlayProgramLine("player"));
-    ret.push(new WaitForPositionProgramLine("player",60.0));
-    ret.push(new PauseProgramLine("player"));
-    ret.push(new TextToSpeachProgramLine("dad wars","German Male",true));
-    return ret;
-}
-    
+
 init(); 
