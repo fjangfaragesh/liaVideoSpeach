@@ -50,7 +50,7 @@ class EntertainmentManager {
     async runProgram(lines) {
         if (this.programRunning) throw new Error("EntertainmentManager can't run 2 Programs at the same time!");
         this.programRunning = true;
-        this.say("x","US English Female");//Vermitlich gibt es einen Bug in der Voice API, bei welchem beim ersten mal ausführen onend nicht aufgerufen wird. Deshalb diese Dummy Ausgabe
+        this.say("start","US English Female");//Vermitlich gibt es einen Bug in der Voice API, bei welchem beim ersten mal ausführen onend nicht aufgerufen wird. Deshalb diese Dummy Ausgabe
         for (let l of lines) {
             console.log("EntertainmentManager.runProgram: running " + l.toString());
             await l.execute(this);
