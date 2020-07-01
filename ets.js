@@ -66,7 +66,11 @@ class EntertainmentManager {
         
     say(text,lang) {        
         return new Promise(function(resolve, reject) {
-            responsiveVoice.speak(text,lang,{onend: resolve});
+            responsiveVoice.speak(text,lang,{onend: function() {
+                    console.log("TTS resolved");
+                    resolve();
+                }
+            });
         });
         
     }
