@@ -15,7 +15,7 @@ build_program.push(new WaitProgramLine(@0));
 @end
 
 @ets.newYTPlayer
-build_program.push(new NewPlayerProgramLine( "@0" , @1, @2, "@3"));
+build_program.push(new NewPlayerProgramLine( "@0" , @1, @2));
 @end
 
 @ets.waitYTVTime
@@ -85,7 +85,7 @@ Sollte es nicht funktionieren, muss manuell auf play gedrückt werden.
 
 Das div mit der Id playerId zum Video Player machen:
 
-`ets.newYTPlayer(playerId,width,height,videoId)`
+`ets.newYTPlayer(playerId,width,height)`
 
 ## Warten bis Videozeitpunkt erreicht
 

@@ -19,7 +19,8 @@ Nur ein Test von Entertaiment Manager
 
 <!-- id="etsCode" style="display:none" -->
 @ets.reset()
-@ets.newYTPlayer(player1,640,360,YOneAeBz8BQ)
+@ets.newYTPlayer(player1,640,360)
+@ets.changeYTV(player1,YOneAeBz8BQ)
 @ets.wait(4000)
 @ets.pauseYTV(player1)
 @ets.seekYTV(player1,50)
