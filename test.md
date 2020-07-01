@@ -58,7 +58,7 @@ Nur ein Test von Entertaiment Manager
 @ets.seekYTV(player1,36)
 @ets.sayAwait(Katzen sind sehr geschickte Tierchen. Sie sind perfekte kletterer.,Deutsch Male)
 @ets.waitYTVTime(player1,64)
-@ets.sayAwait(Und sie behalten immer einen kühlen Kopf.,Deusch Male)
+@ets.sayAwait(Und sie behalten immer einen kühlen Kopf.,Deutsch Male)
 @ets.waitYTVTime(player1,68)
 @ets.seekYTV(player1,88)
 @ets.sayAwait(Und sie sind immer freundlich.,Deutsch Male)
